@@ -31,6 +31,11 @@
 			<name>Martin Peters</name>
 			<email>martin@freakybytes.net</email>
 		</developer>
+		<developer>
+			<id>mn</id>
+			<name>Mariam Nasser</name>
+			<email>mariam.nassar@uni-rostock.de</email>
+		</developer>
 	</developers>
 
 	<dependencies>
