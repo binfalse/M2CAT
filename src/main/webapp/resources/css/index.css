@@ -1,0 +1,34 @@
+/* css for main search page */
+
+/* corporate-design container 
+ ---------------------------------------- */
+.corporate-container {
+	margin-bottom: 60px;
+}
+.corporate-row {
+	text-align: center;
+	max-height: 5em;
+}
+.corporate-row > img {
+	max-height: 5em;
+	width: auto;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+/* search form
+ ---------------------------------------- */
+img.logo {
+	height: auto;
+	max-height: 12em;
+	margin-left: auto;
+    margin-right: auto;
+}
+#searchform-row {
+	margin-top: 1em;
+	margin-bottom: 5em;
+}
+#searchform-row > div > form {
+	width: 100%;
+	text-align: center;
+}

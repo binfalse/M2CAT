@@ -1,0 +1,14 @@
+.search-result-container {
+	background-color: #EEE;
+	padding: 10px;
+	margin-top: 15px;
+}
+.search-result-container h2 {
+	margin-top: 3px;
+}
+.search-result-container .search-result-score {
+	text-align: right;
+}
+.cat-link {
+	display: none;
+}
