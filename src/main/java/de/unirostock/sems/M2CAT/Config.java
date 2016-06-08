@@ -1,8 +1,5 @@
 package de.unirostock.sems.M2CAT;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 import javax.servlet.ServletContext;
@@ -41,15 +38,12 @@ public class Config {
 	 */
 	private Config() {}
 	
-	/** JDBC Connection to the neo4j instance */
-//	private String neo4jUrl		= "jdbc:neo4j://morre.sems.uni-rostock.de:7474/";
-//	/** Url to morre */
+	/** Bolt Connection to the neo4j instance */
+//	private String neo4jUrl		= "bolt://morre.sems.uni-rostock.de/";
+	/** Url to morre */
 //	private String morreUrl		= "http://morre.sems.uni-rostock.de:7474/morre/query";
-//	/** Url to webCat, leave null to deactivate */
-//	private String webCatUrl	= "http://webcat.sems.uni-rostock.de";//null;
-//	/** JDBC Connection to the neo4j instance */
-//	private String neo4jUrl		= "jdbc:neo4j://localhost:7474/";
-	/** JDBC Connection to the neo4j instance */
+	
+	/** Bolt Connection to the neo4j instance */
 	private String neo4jUrl		= "bolt://localhost";
 	/** Url to morre */
 	private String morreUrl		= "http://localhost:7474/morre/query";
@@ -78,19 +72,7 @@ public class Config {
 	 */
 	private void init() {
 		
-		// connect to neo4j
-//		if( jdbcConnection == null ) {
-//			try {
-//				// Make sure Neo4j Driver is registered
-//				Class.forName("org.neo4j.jdbc.Driver");
-//				// get Connection
-//				jdbcConnection = DriverManager.getConnection(neo4jUrl);
-//			} catch (SQLException e) {
-//				LOGGER.error(e, "Cannot initialize connection to neo4j");
-//			} catch (ClassNotFoundException e) {
-//				LOGGER.error(e, "Neo4j JDBC connector not found!");
-//			}
-//		}
+		// init connection to neo4j
 		try {
 			driver = GraphDatabase.driver(neo4jUrl);
 		} catch (Exception e) {
@@ -128,11 +110,6 @@ public class Config {
 	public String getWebCatUrl() {
 		return webCatUrl;
 	}
-	
-//	@JsonIgnore
-//	public Connection getJdbcConnection() {
-//		return jdbcConnection;
-//	}
 	
 	@JsonIgnore
 	public Session getDatabaseSession() {
