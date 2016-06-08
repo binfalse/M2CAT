@@ -9,8 +9,6 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.ctc.wstx.util.StringUtil;
-
 import de.binfalse.bflog.LOGGER;
 import de.unirostock.sems.M2CAT.Config;
 import de.unirostock.sems.morre.client.Morre;
