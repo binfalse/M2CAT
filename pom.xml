@@ -5,7 +5,7 @@
 	<groupId>de.unirostock.sems</groupId>
 	<artifactId>M2CAT</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 
 	<name>M2CAT</name>
 	<description>A web frontend for searching biological models and crawling additional information for them</description>
@@ -250,7 +250,7 @@
 			<uniqueVersion>false</uniqueVersion>
 			<id>sems-maven-repository</id>
 			<name>SEMS Maven Release Repository</name>
-			<url>scp://sems.uni-rostock.de:/home/stuff/web/mvn/snapshots/</url>
+			<url>scpexe://mvn.sems.uni-rostock.de:/home/stuff/web/mvn/snapshots/</url>
 			<layout>default</layout>
 		</snapshotRepository>
 
@@ -258,7 +258,7 @@
 			<uniqueVersion>false</uniqueVersion>
 			<id>sems-maven-repository</id>
 			<name>Enterprise Systems Maven Repository</name>
-			<url>scp://sems.uni-rostock.de:/home/stuff/web/mvn/releases/</url>
+			<url>scpexe://mvn.sems.uni-rostock.de:/home/stuff/web/mvn/releases/</url>
 			<layout>default</layout>
 		</repository>
 	</distributionManagement>
@@ -269,8 +269,8 @@
 			<!-- enables ssh/scp support for maven deployment -->
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ssh</artifactId>
-				<version>2.8</version>
+				<artifactId>wagon-ssh-external</artifactId>
+				<version>2.10</version>
 			</extension>
 		</extensions>
 		<resources>
