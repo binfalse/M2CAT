@@ -29,23 +29,23 @@ public class MasymosConnector implements RetrievalConnector {
 	public void startRetriving(ArchiveInformation archiveInformation) {
 		config = Config.getConfig();
 		session = config.getDatabaseSession();
-		
+
 		getBasicModelMeta(archiveInformation);
 		getPublicationInformation(archiveInformation);
-		
+
 		session.close();
 
 	}
-	
-private void getBasicModelMeta(ArchiveInformation archiveInformation) {
-		
+
+	private void getBasicModelMeta(ArchiveInformation archiveInformation) {
+
 		// Get modelName and modelId (not this id, used to identify different models, more the xml-node id)
 		String query = "Match (d:DOCUMENT)-->(m:MODEL) Where d.URI={1} Return m.NAME as NAME, m.ID as MID";
 		try {
 			// set URI as identifier
 			String url = new String(Base64.getDecoder().decode(
 					archiveInformation.getId()));
-			
+
 			StatementResult result = session.run(query, Values.parameters("1", url));
 			if( result.hasNext() ) {
 				ModelInformation modelInfo = archiveInformation.getModel();		// returns an empty Model obj, if it wasn't set yet
@@ -56,20 +56,18 @@ private void getBasicModelMeta(ArchiveInformation archiveInformation) {
 					LOGGER.warn(e, "Cannot parse model url.");
 					modelInfo.setDocumentURI(null);
 				}
+				
 				Record record = result.next();
 				String modelId = record.get("MID").asString();
 				modelInfo.setModelId( modelId == null || modelId.isEmpty() ? null : modelId );
-				
+
 				String name = record.get("NAME").asString();
 				modelInfo.setModelName( name == null || name.isEmpty() ? null : name );
-				
-				// apply modelInfo
-				archiveInformation.setModel(modelInfo);
 			}
 		} catch (Exception e) {
 			LOGGER.error(e, "Not able to gather basic model information for ", archiveInformation.getId() );
 		}
-		
+
 	}
 
 	private void getPublicationInformation(ArchiveInformation archiveInformation) {
@@ -81,13 +79,13 @@ private void getBasicModelMeta(ArchiveInformation archiveInformation) {
 			// set URI as identifier
 			String url = new String(Base64.getDecoder().decode(
 					archiveInformation.getId()));
-			
+
 			StatementResult result = session.run(query, Values.parameters("1", url));
-			
+
 			while (result.hasNext()) {
 				// add all publications to the dataholder
 				PublicationInformation pub = new PublicationInformation();
-				
+
 				Record record = result.next();
 				String title = record.get("TITLE").asString();
 				pub.setTitle(title == null || title.isEmpty() ? null : title);

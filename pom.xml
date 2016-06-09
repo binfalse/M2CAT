@@ -101,32 +101,24 @@
 		</dependency>
 
 		<!-- Neo4j Stuff -->
-		<!-- tag::jdbc-dependency[] -->
-		<!--change to bolt driver
-		<dependency>
-			<groupId>org.neo4j</groupId>
-			<artifactId>neo4j-jdbc</artifactId>
-			<version>${neo4j.version}</version>
-		</dependency> -->
-		<!-- end::jdbc-dependency[] -->
 		<!-- begin dependency bolt -->
 		<dependency>
 			<groupId>org.neo4j.driver</groupId>
 			<artifactId>neo4j-java-driver</artifactId>
-			<version>1.0.0</version>
+			<version>1.0.1</version>
 		</dependency>
 		<!-- end dependency bolt -->
-		<dependency>
-			<groupId>org.neo4j</groupId>
-			<artifactId>neo4j</artifactId>
-			<version>${neo4j.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.neo4j</groupId>
-					<artifactId>neo4j-jmx</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.neo4j</groupId> -->
+<!-- 			<artifactId>neo4j</artifactId> -->
+<!-- 			<version>${neo4j.version}</version> -->
+<!-- 			<exclusions> -->
+<!-- 				<exclusion> -->
+<!-- 					<groupId>org.neo4j</groupId> -->
+<!-- 					<artifactId>neo4j-jmx</artifactId> -->
+<!-- 				</exclusion> -->
+<!-- 			</exclusions> -->
+<!-- 		</dependency> -->
 
 		<!-- Miriam lib -->
 		<dependency>
