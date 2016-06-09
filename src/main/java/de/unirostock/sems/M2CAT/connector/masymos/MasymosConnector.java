@@ -43,7 +43,7 @@ public class MasymosConnector implements RetrievalConnector {
 		String query = "Match (d:DOCUMENT)-->(m:MODEL) Where d.URI={1} Return m.NAME as NAME, m.ID as MID";
 		try {
 			// set URI as identifier
-			String url = new String(Base64.getDecoder().decode(
+			String url = new String(Base64.getUrlDecoder().decode(
 					archiveInformation.getId()));
 
 			StatementResult result = session.run(query, Values.parameters("1", url));
@@ -77,7 +77,7 @@ public class MasymosConnector implements RetrievalConnector {
 
 		try {
 			// set URI as identifier
-			String url = new String(Base64.getDecoder().decode(
+			String url = new String(Base64.getUrlDecoder().decode(
 					archiveInformation.getId()));
 
 			StatementResult result = session.run(query, Values.parameters("1", url));

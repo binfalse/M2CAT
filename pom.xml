@@ -5,7 +5,7 @@
 	<groupId>de.unirostock.sems</groupId>
 	<artifactId>M2CAT</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 
 	<name>M2CAT</name>
 	<description>A web frontend for searching biological models and crawling additional information for them</description>

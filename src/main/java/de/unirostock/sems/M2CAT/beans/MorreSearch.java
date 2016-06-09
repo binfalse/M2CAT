@@ -131,7 +131,7 @@ public class MorreSearch implements Serializable {
 	}
 	
 	public String getIdFromResult(ModelResult result) {
-		return Base64.getEncoder().encodeToString( result.getDocumentURI().getBytes() );
+		return Base64.getUrlEncoder().encodeToString( result.getDocumentURI().getBytes() );
 	}
 	
 	// getter / setter

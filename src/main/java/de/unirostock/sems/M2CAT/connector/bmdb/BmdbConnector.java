@@ -19,7 +19,7 @@ public class BmdbConnector implements RetrievalConnector {
 
 	public void startRetriving(ArchiveInformation archiveInformation) {
 
-		String bmdbId = new String(Base64.getDecoder().decode( archiveInformation.getId() ));
+		String bmdbId = new String(Base64.getUrlDecoder().decode( archiveInformation.getId() ));
 		Matcher matcher = bmdbIdPattern.matcher(bmdbId);
 		if( matcher.find() == false )
 			return;
