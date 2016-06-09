@@ -75,3 +75,9 @@ body {
 	line-height: 0.9em;
 }
 
+/* misc
+ ------------------------------------------ */
+ 
+.img-link, .img-link:hover {
+	text-decoration: none;
+}
