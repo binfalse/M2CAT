@@ -32,3 +32,20 @@ img.logo {
 	width: 100%;
 	text-align: center;
 }
+.beta-note {
+	width: 70%;
+	margin: 20px auto 0 auto;
+	color: #AAA;
+	font-size: 0.9em;
+	text-align: justify;
+}
+
+.aggregation-settings {
+	margin-top: 20px;
+}
+.aggregation-settings > div:first-child {
+	text-align: left;
+}
+.aggregation-settings > div:last-child {
+	text-align: right;
+}

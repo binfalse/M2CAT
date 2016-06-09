@@ -81,52 +81,59 @@
 				<form class="form-inline" action="search" method="GET">
 					<input type="text" class="form-control" name="q" placeholder="search term" />
 					<input type="submit" class="btn btn-default btn-primary" value="Search" />
-				
-				  	<div>
-					<label> Aggregation Type:</label> <br>
 					
-       				<label class="radio">
-         				<input type="radio" name="aggregationType" class="toggle" value="DEFAULT" checked="checked"> Default
-       				</label> <br>
-       				<label class="radio">
-         				<input type="radio" name="aggregationType" class="toggle" value="ADJACENT_PAIRS"> Adjacent Pairs
-      				 </label> <br>
-       				<label class="radio">
-         				<input type="radio" name="aggregationType" class="toggle" value="COMB_MNZ"> CombMNZ
-       				</label> <br>
-       				<label class="radio">
-         				<input type="radio" name="aggregationType" class="toggle" value="LOCAL_KEMENIZATION"> Local Kemenization
-       				</label> <br>
-       				<label class="radio">
-         				<input type="radio" name="aggregationType" class="toggle" value="SUPERVISED_LOCAL_KEMENIZATION"> Supervised Local Kemenization
-       				</label> <br>
-       				</div>
-       				<div>
-					<label> Rankers weights (1 - 99):</label> <br>
-					<input type="text" id="weight1" name="modelRankerWeight" placeholder="Model Index" onkeypress="return validate(event)"/> <br>
-					<input type="text" id="weight2" name="annotationRankerWeight" placeholder="Annotation Index" onkeypress="return validate(event)"/> <br>
-					<input type="text" id="weight3" name="personRankerWeight" placeholder="Person Index" onkeypress="return validate(event)"/> <br>
-					<input type="text" id="weight4" name="publicationRankerWeight" placeholder="Publication Index" onkeypress="return validate(event)"/> <br>
-					<script type="text/javascript">
-					function validate(evt){
-					    var charCode = (evt.which) ? evt.which : event.keyCode;
-					    	    if (charCode > 31 && ((charCode <48) || (charCode > 57)))
-					    	        return false
-					    	    var weight = parseInt(document.getElementById("weight1").value);
-					    	    if(weight > 99)
-					    	    	return false;
-					    	    var weight = parseInt(document.getElementById("weight2").value);
-					    	    if(weight > 99)
-					    	    	return false;
-					    	    var weight = parseInt(document.getElementById("weight3").value);
-					    	    if(weight > 99)
-					    	    	return false;
-					    	    var weight = parseInt(document.getElementById("weight4").value);
-					    	    if(weight > 99)
-					    	    	return false;
-					    	    return true;
-					    	}
-					</script>
+					<div class="beta-note">
+						This implementation is a beta version. Please keep in mind that this version is not necessarily bug free.
+						If you find errors or have suggestions please contact us<% if( feedbackUrl != null) { %> using the Feedback button<% } %>.
+					</div>
+									
+				  	<div class="row aggregation-settings">
+				  		<div class="col-md-6 col-xl-6 col-sm-6">
+							<label> Aggregation Type:</label> <br>
+							
+		       				<label class="radio">
+		         				<input type="radio" name="aggregationType" class="toggle" value="DEFAULT" checked="checked"> Default
+		       				</label> <br>
+		       				<label class="radio">
+		         				<input type="radio" name="aggregationType" class="toggle" value="ADJACENT_PAIRS"> Adjacent Pairs
+		      				 </label> <br>
+		       				<label class="radio">
+		         				<input type="radio" name="aggregationType" class="toggle" value="COMB_MNZ"> CombMNZ
+		       				</label> <br>
+		       				<label class="radio">
+		         				<input type="radio" name="aggregationType" class="toggle" value="LOCAL_KEMENIZATION"> Local Kemenization
+		       				</label> <br>
+		       				<label class="radio">
+		         				<input type="radio" name="aggregationType" class="toggle" value="SUPERVISED_LOCAL_KEMENIZATION"> Supervised Local Kemenization
+		       				</label> <br>
+	       				</div>
+	       				<div class="col-md-6 col-xl-6 col-sm-6">
+							<strong>Rankers weights (1 - 99):</strong> <br>
+							<input type="text" id="weight1" name="modelRankerWeight" placeholder="Model Index" onkeypress="return validate(event)"/> <br>
+							<input type="text" id="weight2" name="annotationRankerWeight" placeholder="Annotation Index" onkeypress="return validate(event)"/> <br>
+							<input type="text" id="weight3" name="personRankerWeight" placeholder="Person Index" onkeypress="return validate(event)"/> <br>
+							<input type="text" id="weight4" name="publicationRankerWeight" placeholder="Publication Index" onkeypress="return validate(event)"/> <br>
+							<script type="text/javascript">
+							function validate(evt){
+							    var charCode = (evt.which) ? evt.which : event.keyCode;
+							    	    if (charCode > 31 && ((charCode <48) || (charCode > 57)))
+							    	        return false
+							    	    var weight = parseInt(document.getElementById("weight1").value);
+							    	    if(weight > 99)
+							    	    	return false;
+							    	    var weight = parseInt(document.getElementById("weight2").value);
+							    	    if(weight > 99)
+							    	    	return false;
+							    	    var weight = parseInt(document.getElementById("weight3").value);
+							    	    if(weight > 99)
+							    	    	return false;
+							    	    var weight = parseInt(document.getElementById("weight4").value);
+							    	    if(weight > 99)
+							    	    	return false;
+							    	    return true;
+							    	}
+							</script>
+						</div>
 					</div> 
 				</form>
 			</div>  
