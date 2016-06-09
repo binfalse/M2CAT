@@ -36,6 +36,11 @@
 			<name>Mariam Nasser</name>
 			<email>mariam.nassar@uni-rostock.de</email>
 		</developer>
+		<developer>
+			<id>ms</id>
+			<name>Martin Scharm</name>
+			<email>dev@binfalse.de</email>
+		</developer>
 	</developers>
 
 	<dependencies>
@@ -256,7 +261,6 @@
 	</distributionManagement>
 
 	<build>
-		<finalName>M2CAT</finalName>
 		<extensions>
 			<!-- enables ssh/scp support for maven deployment -->
 			<extension>
