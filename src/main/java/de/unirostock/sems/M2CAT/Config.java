@@ -49,6 +49,8 @@ public class Config {
 	private String morreUrl		= "http://localhost:7474/morre/query";
 	/** Url to webCat, leave null to deactivate */
 	private String webCatUrl	= "http://webcat.sems.uni-rostock.de";//null;
+	/** Url to a feedback/ticket form, leave null to deactivate */
+	private String feedbackUrl	= "https://sems.uni-rostock.de/trac/m2cat/newticket?from={0}";
 	/** default (minimum) size of the execution thread pool */
 	private int threadPoolSize				= 2;
 	/** maximum size of the execution thread pool */
@@ -111,6 +113,10 @@ public class Config {
 		return webCatUrl;
 	}
 	
+	public String getFeedbackUrl() {
+		return feedbackUrl;
+	}
+	
 	@JsonIgnore
 	public Session getDatabaseSession() {
 		return driver.session();
@@ -120,4 +126,5 @@ public class Config {
 	public PriorityThreadPoolExecutor getExecutor() {
 		return executor;
 	}
+	
 }

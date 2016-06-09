@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="de.unirostock.sems.M2CAT.Util"%>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
@@ -23,6 +24,14 @@
 	    <![endif]-->
 </head>
 <body>
+	<!-- feedback button -->
+	<% String feedbackUrl = Util.getFeedbackUrl(request); 
+	if( feedbackUrl != null) { %>
+	<div id="feedback">
+		<a href="<%=feedbackUrl%>" title="feedback"></a>
+	</div>
+	<% } %>
+	
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default">
 		<div class="container">

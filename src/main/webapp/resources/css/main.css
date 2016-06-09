@@ -36,3 +36,42 @@ body {
 	max-height: 2.5em;
 	padding: 0 5px;
 }
+
+/* Feedback button
+ ---------------------------------------- */
+#feedback {
+	display: block;
+	position: fixed;
+	top: 35%;
+	left: 0;
+}
+#feedback a {
+	display: block;
+	width: 32px;
+	height: 91px;
+	
+	background: no-repeat scroll center #EEE;
+	background-image: url('../img/feedback.png');
+	border: 2px dashed #555;
+	border-radius: 5px;
+	border-left: none;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	
+	text-decoration: none;
+	color: #c00;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+#feedback a:hover {
+	background-color: #c00;
+	background-image: url('../img/feedback-highlight.png');
+	color: #EEE;
+}
+#feedback span {
+	max-width: 1ch;
+	display: block;
+	word-wrap: break-word;
+	line-height: 0.9em;
+}
+
