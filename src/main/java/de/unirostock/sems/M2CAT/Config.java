@@ -76,7 +76,7 @@ public class Config {
 		
 		// init connection to neo4j
 		try {
-			driver = GraphDatabase.driver(neo4jUrl);
+			driver = GraphDatabase.driver(neo4jUrl, org.neo4j.driver.v1.Config.build().withEncryptionLevel(org.neo4j.driver.v1.Config.EncryptionLevel.NONE).toConfig());
 		} catch (Exception e) {
 			LOGGER.error(e, "Cannot initialize connection to neo4j");
 		}
