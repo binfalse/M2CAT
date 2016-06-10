@@ -2,6 +2,7 @@ package de.unirostock.sems.M2CAT;
 
 import java.text.MessageFormat;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 public abstract class Util {
@@ -45,5 +46,65 @@ public abstract class Util {
 		String uri = (String) request.getAttribute("javax.servlet.forward.request_uri");
 		String prmstr = (String) request.getAttribute("javax.servlet.forward.query_string");
 		return scheme + "://" +serverName + ":" + serverPort + uri + "?" + prmstr;
+	}
+	
+	/**
+	 * Returns the context init parameter key or defaultValue
+	 * 
+	 * @param context
+	 * @param key
+	 * @param defaultValue
+	 * @return
+	 */
+	public static String getParam(ServletContext context, String key, String defaultValue) {
+		
+		if( context == null )
+			return defaultValue;
+		
+		String value = context.getInitParameter(key);
+		if( value != null && value.isEmpty() == false )
+			return value;
+		else
+			return defaultValue;
+	}
+	
+	/**
+	 * Returns the context init parameter key or defaultValue
+	 * 
+	 * @param context
+	 * @param key
+	 * @param defaultValue
+	 * @return
+	 */
+	public static long getParam(ServletContext context, String key, long defaultValue) {
+		
+		if( context == null )
+			return defaultValue;
+		
+		String value = context.getInitParameter(key);
+		if( value != null && value.isEmpty() == false )
+			return Long.valueOf(value);
+		else
+			return defaultValue;
+	}
+	
+	/**
+	 * Returns the context init parameter key or defaultValue
+	 * 
+	 * @param context
+	 * @param key
+	 * @param defaultValue
+	 * @return
+	 */
+	public static double getParam(ServletContext context, String key, double defaultValue) {
+		
+		if( context == null )
+			return defaultValue;
+		
+		String value = context.getInitParameter(key);
+		if( value != null && value.isEmpty() == false )
+			return Double.valueOf(value);
+		else
+			return defaultValue;
 	}
 }

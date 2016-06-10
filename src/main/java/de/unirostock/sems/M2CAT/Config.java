@@ -22,9 +22,10 @@ public class Config {
 	}
 	
 	public static Config loadConfig(ServletContext context) {
-		// TODO
+		
 		if( instance == null ) {
 			instance = new Config();
+			instance.load(context);
 			instance.init();
 		}
 		
@@ -68,6 +69,24 @@ public class Config {
 	
 	/** Bolt driver */
 	private Driver driver = null;
+	
+	/**
+	 * load settings from context
+	 */
+	private void load(ServletContext context) {
+		
+		this.neo4jUrl = Util.getParam(context, "NEO4J_URL", this.neo4jUrl);
+		this.morreUrl = Util.getParam(context, "MORRE_URL", this.morreUrl);
+		this.webCatUrl = Util.getParam(context, "WEBCAT_URL", this.webCatUrl);
+		this.feedbackUrl = Util.getParam(context, "FEEDBACK_URL", feedbackUrl);
+		
+		this.tempFilePrefix = Util.getParam(context, "TEMP_PREFIX", this.tempFilePrefix);
+		
+		this.threadPoolSize = (int) Util.getParam(context, "THREADPOOL_SIZE", this.threadPoolSize);
+		this.threadPoolMaxSize = (int) Util.getParam(context, "THREADPOOL_MAX_SIZE", this.threadPoolMaxSize);
+		this.threadPoolKeepAliveTime = Util.getParam(context, "THREADPOOL_KEEPALIVE", this.threadPoolKeepAliveTime);
+		
+	}
 	
 	/**
 	 * Inits stuff.
