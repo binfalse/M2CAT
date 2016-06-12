@@ -75,6 +75,27 @@ public class Config {
 	 */
 	private void load(ServletContext context) {
 		
+		LOGGER.setMinLevel(LOGGER.WARN);
+		String logLevel = Util.getParam(context, "LOGLEVEL", "WARN");
+		if( logLevel != null ) {
+			LOGGER.warn("Set desired loglevel to ", logLevel);
+			
+			if( logLevel.equals("DEBUG") ) {
+				LOGGER.setMinLevel(LOGGER.DEBUG);
+				LOGGER.setLogStackTrace(true);
+			}
+			else if( logLevel.equals("INFO") )
+				LOGGER.setMinLevel(LOGGER.INFO);
+			else if( logLevel.equals("WARN") )
+				LOGGER.setMinLevel(LOGGER.WARN);
+			else if( logLevel.equals("ERROR") )
+				LOGGER.setMinLevel(LOGGER.ERROR);
+			else if( logLevel.equals("NONE") )
+				LOGGER.setLogToStdErr(false);
+			else
+				LOGGER.error("Unknown log level!");
+		}
+		
 		this.neo4jUrl = Util.getParam(context, "NEO4J_URL", this.neo4jUrl);
 		this.morreUrl = Util.getParam(context, "MORRE_URL", this.morreUrl);
 		this.webCatUrl = Util.getParam(context, "WEBCAT_URL", this.webCatUrl);
