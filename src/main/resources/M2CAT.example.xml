@@ -1,0 +1,32 @@
+<!--
+	This is a sample context configuration for tomcat.
+	It can be inserted into the context.xml, but it highly recommended to store it in
+	
+	$CATALINA_BASE/conf/[enginename]/[hostname]/M2CAT.xml
+	
+-->
+<Context>
+	
+	
+	<!-- sets the log level. available levels: DEBUG, INFO, WARN, ERROR, NONE -->
+	<Parameter name="LOGLEVEL" value="ERROR" override="0" />
+	
+	<!-- URL to the neo4j bolt api endpoint -->
+	<Parameter name="NEO4J_URL" value="bolt://localhost" override="0" />
+	<!-- URL to the MaSyMoS/Morre endpoint -->
+	<Parameter name="MORRE_URL" value="http://localhost:7474/morre/query" override="0" />
+	<!-- URL to webCAT -->
+	<Parameter name="WEBCAT_URL" value="http://webcat.sems.uni-rostock.de" override="0" />
+	<!-- URL to a feedback form. {0} is the current url -->
+	<Parameter name="FEEDBACK_URL" value="https://sems.uni-rostock.de/trac/m2cat/newticket?from={0}" override="0" />
+	
+	<!-- prefix for temp files/folders -->
+	<Parameter name="TEMP_PREFIX" value="m2cat" override="0" />
+	<!-- minimal size of the thread pool -->
+	<Parameter name="THREADPOOL_SIZE" value="2" override="0" />
+	<!-- maximum size of the thread pool -->
+	<Parameter name="THREADPOOL_MAX_SIZE" value="5" override="0" />
+	<!-- time to keep unused threads alive -->
+	<Parameter name="THREADPOOL_KEEPALIVE" value="60" override="0" />
+
+</Context>

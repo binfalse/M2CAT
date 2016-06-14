@@ -1,0 +1,13 @@
+<!--
+        This is a sample context configuration for tomcat.
+        It can be inserted into the context.xml, but it highly recommended to store it in
+
+        $CATALINA_BASE/conf/[enginename]/[hostname]/[contextname].xml
+-->
+<Context>
+
+        <!-- sets the log level. available levels: DEBUG, INFO, WARN, ERROR, NONE -->
+        <Parameter name="LOGLEVEL" value="ERROR" override="0" />
+
+</Context>
+

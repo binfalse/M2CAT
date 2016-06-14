@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@page import="de.unirostock.sems.M2CAT.Config"%>
+<%@ page import="de.unirostock.sems.M2CAT.Util" %>
 <%@page import="de.unirostock.sems.M2CAT.RetrievalFactory"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -54,6 +55,14 @@
 	    <![endif]-->
 </head>
 <body>
+	<!-- feedback button -->
+	<% String feedbackUrl = Util.getFeedbackUrl(request); 
+	if( feedbackUrl != null) { %>
+	<div id="feedback">
+		<a href="<%=feedbackUrl%>" title="feedback"></a>
+	</div>
+	<% } %>
+	
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default">
 		<div class="container">

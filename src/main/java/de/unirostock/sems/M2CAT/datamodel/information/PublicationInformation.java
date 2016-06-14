@@ -11,7 +11,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import scala.collection.mutable.StringBuilder;
 import de.unirostock.sems.M2CAT.datamodel.VCard;
 import de.unirostock.sems.M2CAT.datamodel.meta.OmexMetaData;
 
@@ -59,7 +58,6 @@ public class PublicationInformation extends AdditionalFileInformation implements
 				.append( author.getOrganization() )
 				.append("), ");
 		}
-		text.dropRight(2);
 		text.append("\n");
 		
 		text.append("  published at: ")

@@ -32,6 +32,10 @@ public class ArchiveInformation implements Serializable {
 		this.id = id;
 	}
 	public ModelInformation getModel() {
+		// create empty model data holder
+		if( model == null )
+			this.model = new ModelInformation();
+		
 		return model;
 	}
 	public void setModel(ModelInformation model) {

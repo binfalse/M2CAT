@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<%@page import="de.unirostock.sems.M2CAT.Config"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="de.unirostock.sems.M2CAT.beans.*" %>
+<%@ page import="de.unirostock.sems.M2CAT.Util" %>
+<%@ page import="de.unirostock.sems.M2CAT.Config" %>
 <jsp:useBean id="search" class="de.unirostock.sems.M2CAT.beans.MorreSearch" scope="request" />
 <jsp:setProperty name="search" property="request" value="<%=request.getParameter(\"q\") %>" />
 <jsp:setProperty name="search" property="aggregationType" value="<%=request.getParameter(\"aggregationType\") %>" />
@@ -62,6 +63,14 @@
 	    <![endif]-->
 </head>
 <body>
+	<!-- feedback button -->
+	<% String feedbackUrl = Util.getFeedbackUrl(request);
+	if( feedbackUrl != null) { %>
+	<div id="feedback">
+		<a href="<%=feedbackUrl%>" title="feedback"></a>
+	</div>
+	<% } %>
+	
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default">
 		<div class="container">

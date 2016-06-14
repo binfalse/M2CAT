@@ -2,10 +2,6 @@ package de.unirostock.sems.M2CAT.connector.masymos;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Base64;
 import java.util.Calendar;
 import java.util.LinkedList;
@@ -27,70 +23,32 @@ import de.unirostock.sems.M2CAT.datamodel.information.PublicationInformation;
 public class MasymosConnector implements RetrievalConnector {
 
 	private Config config = null;
-//	private Connection connection = null;
 	private Session session = null;
 
 	@Override
 	public void startRetriving(ArchiveInformation archiveInformation) {
 		config = Config.getConfig();
-//		connection = config.getDatabaseSession();
 		session = config.getDatabaseSession();
-		
+
 		getBasicModelMeta(archiveInformation);
 		getPublicationInformation(archiveInformation);
-		
+
 		session.close();
 
 	}
-	
-//	private void getBasicModelMeta(ArchiveInformation archiveInformation) {
-//		
-//		// Get modelName and modelId (not this id, used to identify different models, more the xml-node id)
-//		String query = "Match (d:DOCUMENT)-->(m:MODEL) Where d.URI={1} Return m.NAME as NAME, m.ID as MID";
-//		try( PreparedStatement stm = connection.prepareStatement(query) ) {
-//			// set URI as identifier
-//			String url = new String(Base64.getDecoder().decode(
-//					archiveInformation.getId()));
-//			stm.setString(1, url);
-//			
-//			ResultSet result = stm.executeQuery();
-//			if( result.next() ) {
-//				ModelInformation modelInfo = new ModelInformation();
-//				try {
-//					modelInfo.setDocumentURI(new URI(url));
-//				}
-//				catch (URISyntaxException e) {
-//					LOGGER.warn(e, "Cannot parse model url.");
-//					modelInfo.setDocumentURI(null);
-//				}
-//				
-//				String modelId = result.getString("MID");
-//				modelInfo.setModelId( modelId == null || modelId.isEmpty() ? null : modelId );
-//				
-//				String name = result.getString("NAME");
-//				modelInfo.setModelName( name == null || name.isEmpty() ? null : name );
-//				
-//				// apply modelInfo
-//				archiveInformation.setModel(modelInfo);
-//			}
-//		} catch (SQLException e) {
-//			LOGGER.error(e, "Not able to gather basic model information for ", archiveInformation.getId() );
-//		}
-//		
-//	}
-	
-private void getBasicModelMeta(ArchiveInformation archiveInformation) {
-		
+
+	private void getBasicModelMeta(ArchiveInformation archiveInformation) {
+
 		// Get modelName and modelId (not this id, used to identify different models, more the xml-node id)
 		String query = "Match (d:DOCUMENT)-->(m:MODEL) Where d.URI={1} Return m.NAME as NAME, m.ID as MID";
 		try {
 			// set URI as identifier
-			String url = new String(Base64.getDecoder().decode(
+			String url = new String(Base64.getUrlDecoder().decode(
 					archiveInformation.getId()));
-			
+
 			StatementResult result = session.run(query, Values.parameters("1", url));
 			if( result.hasNext() ) {
-				ModelInformation modelInfo = new ModelInformation();
+				ModelInformation modelInfo = archiveInformation.getModel();		// returns an empty Model obj, if it wasn't set yet
 				try {
 					modelInfo.setDocumentURI(new URI(url));
 				}
@@ -98,20 +56,18 @@ private void getBasicModelMeta(ArchiveInformation archiveInformation) {
 					LOGGER.warn(e, "Cannot parse model url.");
 					modelInfo.setDocumentURI(null);
 				}
+				
 				Record record = result.next();
 				String modelId = record.get("MID").asString();
 				modelInfo.setModelId( modelId == null || modelId.isEmpty() ? null : modelId );
-				
+
 				String name = record.get("NAME").asString();
 				modelInfo.setModelName( name == null || name.isEmpty() ? null : name );
-				
-				// apply modelInfo
-				archiveInformation.setModel(modelInfo);
 			}
 		} catch (Exception e) {
 			LOGGER.error(e, "Not able to gather basic model information for ", archiveInformation.getId() );
 		}
-		
+
 	}
 
 	private void getPublicationInformation(ArchiveInformation archiveInformation) {
@@ -121,15 +77,15 @@ private void getBasicModelMeta(ArchiveInformation archiveInformation) {
 
 		try {
 			// set URI as identifier
-			String url = new String(Base64.getDecoder().decode(
+			String url = new String(Base64.getUrlDecoder().decode(
 					archiveInformation.getId()));
-			
+
 			StatementResult result = session.run(query, Values.parameters("1", url));
-			
+
 			while (result.hasNext()) {
 				// add all publications to the dataholder
 				PublicationInformation pub = new PublicationInformation();
-				
+
 				Record record = result.next();
 				String title = record.get("TITLE").asString();
 				pub.setTitle(title == null || title.isEmpty() ? null : title);

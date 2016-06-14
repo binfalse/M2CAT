@@ -66,7 +66,7 @@ public class Pmr2Connector implements RetrievalConnector {
 		archiveInfo = archiveInformation;
 		
 		// check if link points to cellML/PMR2
-		String modelLink = new String(Base64.getDecoder().decode( archiveInfo.getId() ));
+		String modelLink = new String(Base64.getUrlDecoder().decode( archiveInfo.getId() ));
 		if( modelLink.matches("^https?\\://(models\\.cellml\\.org|models\\.physiomeproject\\.org)/.*$") ) {
 			// prozess Links
 			try {
