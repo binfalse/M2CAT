@@ -86,11 +86,48 @@
 						This implementation is a beta version. Please keep in mind that this version is not necessarily bug free.
 						If you find errors or have suggestions please contact us<% if( feedbackUrl != null) { %> using the Feedback button<% } %>.
 					</div>
-									
+					
 				  	<div class="row aggregation-settings">
 				  		<div class="col-md-6 col-xl-6 col-sm-6">
 							<label> Aggregation Type:</label> <br>
+							<select name="aggregationType" onchange='checkMethod(this.value);'>
+    							<option value="DEFAULT"> Default</option>
+    							<option value="ADJACENT_PAIRS"> Adjacent Pairs</option>
+    							<option value="COMB_MNZ"> CombMNZ</option>
+    							<option value="LOCAL_KEMENIZATION"> Local Kemenization</option>
+    							<option value="SUPERVISED_LOCAL_KEMENIZATION"> Supervised Local Kemenization</option>
+    							</select>
+    						
+							<script type="text/javascript">
+    						function checkMethod(val){
+    							var elementd=document.getElementById('div');
+    							var element=document.getElementById('weightsText');
+    							var element1=document.getElementById('weight1');
+    							var element2=document.getElementById('weight2');
+    							var element3=document.getElementById('weight3');
+    							var element4=document.getElementById('weight4');
+ 								if(val=='SUPERVISED_LOCAL_KEMENIZATION'){
+ 									elementd.style.display='block';
+ 									element.style.display='block';
+   									element1.style.display='block';
+   									element2.style.display='block';
+   									element3.style.display='block';
+   									element4.style.display='block';
+ 								}
+
+ 								else  {
+ 									elementd.style.display='none';
+ 									element.style.display='none';
+ 									element1.style.display='none';
+ 									element2.style.display='none';
+ 									element3.style.display='none';
+ 									element4.style.display='none';
+ 								}
+								}
+							</script>
+							 
 							
+  							<!--
 		       				<label class="radio">
 		         				<input type="radio" name="aggregationType" class="toggle" value="DEFAULT" checked="checked"> Default
 		       				</label> <br>
@@ -105,14 +142,15 @@
 		       				</label> <br>
 		       				<label class="radio">
 		         				<input type="radio" name="aggregationType" class="toggle" value="SUPERVISED_LOCAL_KEMENIZATION"> Supervised Local Kemenization
-		       				</label> <br>
+		       				</label> <br> -->
 	       				</div>
-	       				<div class="col-md-6 col-xl-6 col-sm-6">
-							<strong>Rankers weights (1 - 99):</strong> <br>
-							<input type="text" id="weight1" name="modelRankerWeight" placeholder="Model Index" onkeypress="return validate(event)"/> <br>
-							<input type="text" id="weight2" name="annotationRankerWeight" placeholder="Annotation Index" onkeypress="return validate(event)"/> <br>
-							<input type="text" id="weight3" name="personRankerWeight" placeholder="Person Index" onkeypress="return validate(event)"/> <br>
-							<input type="text" id="weight4" name="publicationRankerWeight" placeholder="Publication Index" onkeypress="return validate(event)"/> <br>
+	       				
+	       				<div class="col-md-6 col-xl-6 col-sm-6" id="div">
+							<strong id="weightsText" style='display:none;'>Rankers weights (1 - 99):</strong> <br>
+							<input type="text" id="weight1" name="modelRankerWeight" placeholder="Model Index" onkeypress="return validate(event)" style='display:none;'/> <br>
+							<input type="text" id="weight2" name="annotationRankerWeight" placeholder="Annotation Index" onkeypress="return validate(event)" style='display:none;'/> <br>
+							<input type="text" id="weight3" name="personRankerWeight" placeholder="Person Index" onkeypress="return validate(event)" style='display:none;'/> <br>
+							<input type="text" id="weight4" name="publicationRankerWeight" placeholder="Publication Index" onkeypress="return validate(event)" style='display:none;'/> <br>
 							<script type="text/javascript">
 							function validate(evt){
 							    var charCode = (evt.which) ? evt.which : event.keyCode;
