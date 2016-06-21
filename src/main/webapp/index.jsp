@@ -100,31 +100,34 @@
     						
 							<script type="text/javascript">
     						function checkMethod(val){
-    							var elementd=document.getElementById('div');
     							var element=document.getElementById('weightsText');
     							var element1=document.getElementById('weight1');
     							var element2=document.getElementById('weight2');
     							var element3=document.getElementById('weight3');
     							var element4=document.getElementById('weight4');
+    							var elementDefault=document.getElementById('defaultWeights');
+    							var elementInputWeights=document.getElementById('inputWeights');
  								if(val=='SUPERVISED_LOCAL_KEMENIZATION'){
- 									elementd.style.display='block';
  									element.style.display='block';
    									element1.style.display='block';
    									element2.style.display='block';
    									element3.style.display='block';
    									element4.style.display='block';
+   									elementDefault.style.display='block';
+   									elementInputWeights.style.display='block';
  								}
 
  								else  {
- 									elementd.style.display='none';
  									element.style.display='none';
  									element1.style.display='none';
  									element2.style.display='none';
  									element3.style.display='none';
  									element4.style.display='none';
+ 									elementDefault.style.display='none';
+ 									elementInputWeights.style.display='none';
  								}
 								}
-							</script>
+							</script> 
 							 
 							
   							<!--
@@ -145,12 +148,39 @@
 		       				</label> <br> -->
 	       				</div>
 	       				
-	       				<div class="col-md-6 col-xl-6 col-sm-6" id="div">
-							<strong id="weightsText" style='display:none;'>Rankers weights (1 - 99):</strong> <br>
-							<input type="text" id="weight1" name="modelRankerWeight" placeholder="Model Index" onkeypress="return validate(event)" style='display:none;'/> <br>
-							<input type="text" id="weight2" name="annotationRankerWeight" placeholder="Annotation Index" onkeypress="return validate(event)" style='display:none;'/> <br>
-							<input type="text" id="weight3" name="personRankerWeight" placeholder="Person Index" onkeypress="return validate(event)" style='display:none;'/> <br>
-							<input type="text" id="weight4" name="publicationRankerWeight" placeholder="Publication Index" onkeypress="return validate(event)" style='display:none;'/> <br>
+	       				<div class="col-md-6 col-xl-6 col-sm-6">
+							<label id="weightsText" style='display:none;'> Rankers weights (1 - 99):</label> 
+							<input type="text" id="weight1" name="modelRankerWeight" placeholder="Model Index" onkeypress="return validate(event)" style='display:none;'/>
+							<input type="text" id="weight2" name="annotationRankerWeight" placeholder="Annotation Index" onkeypress="return validate(event)" style='display:none;'/>
+							<input type="text" id="weight3" name="personRankerWeight" placeholder="Person Index" onkeypress="return validate(event)" style='display:none;'/> 
+							<input type="text" id="weight4" name="publicationRankerWeight" placeholder="Publication Index" onkeypress="return validate(event)" style='display:none;'/>
+							
+							<label class="radio" id="defaultWeights" style="display:none">
+								<input type="radio" class="toggle" name="weights" onclick="disable()"> Default Weights
+							</label> 
+							<label class="radio" id="inputWeights" style="display:none">
+								<input type="radio" class="toggle" name="weights" checked="checked"  onclick="enable()"> Input Weights
+							</label> 
+							<script type="text/javascript">
+								function disable() {
+    								document.getElementById("weight1").disabled = true;
+    								document.getElementById("weight1").value = "";
+    								document.getElementById("weight2").disabled = true;
+    								document.getElementById("weight2").value = "";
+    								document.getElementById("weight3").disabled = true;
+    								document.getElementById("weight3").value = "";
+    								document.getElementById("weight4").disabled = true;
+    								document.getElementById("weight4").value = "";
+								}
+							</script>
+							<script type="text/javascript">
+								function enable() {
+    								document.getElementById("weight1").disabled = false;
+    								document.getElementById("weight2").disabled = false;
+    								document.getElementById("weight3").disabled = false;
+    								document.getElementById("weight4").disabled = false;
+								}
+							</script>
 							<script type="text/javascript">
 							function validate(evt){
 							    var charCode = (evt.which) ? evt.which : event.keyCode;
