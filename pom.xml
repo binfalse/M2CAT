@@ -197,15 +197,24 @@
         <repository>
             <id>sems-maven-repository-releases</id>
             <name>SEMS Maven Repo</name>
-            <url>http://mvn.sems.uni-rostock.de/releases/</url>
+            <url>https://github.com/SemsProject/maven-repository/raw/releases/</url>
             <layout>default</layout>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
         </repository>
 
-        <!-- Miriam repository -->
+        <repository>
+            <id>sems-maven-repository-snapshots</id>
+            <name>SEMS Maven Repo</name>
+            <url>https://github.com/SemsProject/maven-repository/raw/snapshots/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
 
+        <!-- Miriam repository -->
         <repository>
             <id>ebi-repo</id>
             <name>The EBI internal repository</name>
@@ -218,22 +227,14 @@
             </snapshots>
         </repository>
 
-        <repository>
-            <id>sems-maven-repository-snapshots</id>
-            <name>SEMS Maven Repo</name>
-            <url>http://mvn.sems.uni-rostock.de/snapshots/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-
+        <!-- Java Public Repo -->
         <repository>
             <id>java-public-repo</id>
             <name>Java Maven public</name>
             <url>https://maven.java.net/content/groups/public/</url>
         </repository>
-
+        
+        <!-- Neo4j Maven Repo -->
         <repository>
             <id>Neo4j releases</id>
             <name>Neo4j Releases</name>
@@ -241,32 +242,40 @@
         </repository>
     </repositories>
 
+    <pluginRepositories>
+        <!-- synergian wagon-ssh -->
+        <pluginRepository>
+            <id>synergian-repo</id>
+            <url>https://raw.github.com/synergian/wagon-git/releases</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <distributionManagement>
-        <downloadUrl>http://mvn.sems.uni-rostock.de</downloadUrl>
-        <snapshotRepository>
-            <uniqueVersion>false</uniqueVersion>
+        <downloadUrl>https://raw.github.com/SemsProject/maven-repository/raw/</downloadUrl>
+        <repository>
+            <uniqueVersion>true</uniqueVersion>
             <id>sems-maven-repository</id>
             <name>SEMS Maven Release Repository</name>
-            <url>scpexe://mvn.sems.uni-rostock.de:/home/stuff/web/mvn/snapshots/</url>
-            <layout>default</layout>
-        </snapshotRepository>
-
-        <repository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>sems-maven-repository</id>
-            <name>Enterprise Systems Maven Repository</name>
-            <url>scpexe://mvn.sems.uni-rostock.de:/home/stuff/web/mvn/releases/</url>
+            <url>git:releases://git@github.com:SemsProject/maven-repository.git</url>
             <layout>default</layout>
         </repository>
+
+        <snapshotRepository>
+            <uniqueVersion>true</uniqueVersion>
+            <id>sems-maven-repository</id>
+            <name>SEMS Maven Snapshot Repository</name>
+            <url>git:snapshots://git@github.com:SemsProject/maven-repository.git</url>
+            <layout>default</layout>
+        </snapshotRepository>
     </distributionManagement>
 
     <build>
         <extensions>
-            <!-- enables ssh/scp support for maven deployment -->
+            <!-- enable deployment via git -->
             <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ssh-external</artifactId>
-                <version>2.10</version>
+                <groupId>ar.com.synergian</groupId>
+                <artifactId>wagon-git</artifactId>
+                <version>0.3.0</version>
             </extension>
         </extensions>
         <resources>
