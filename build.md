@@ -1,5 +1,5 @@
-Build ModelCrawler
-==================
+Build M2CAT
+===========
 
 When you've cloned the source code:
 
