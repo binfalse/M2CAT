@@ -13,7 +13,6 @@ M2CAT exposes some crucial settings as Java `ContextVariables`. Those can be set
 -->
 <Context>
 	
-	
 	<!-- sets the log level. available levels: DEBUG, INFO, WARN, ERROR, NONE -->
 	<Parameter name="LOGLEVEL" value="ERROR" override="0" />
 	
@@ -37,6 +36,7 @@ M2CAT exposes some crucial settings as Java `ContextVariables`. Those can be set
 
 </Context>
 ```
+
 ### `LOGLEVEL`
 Sets the level of detail in the logs. Possible values are `DEBUG`, `INFO`, `WARN`, `ERROR`, `NONE`.
 
@@ -44,10 +44,22 @@ Sets the level of detail in the logs. Possible values are `DEBUG`, `INFO`, `WARN
 URL to Neo4j, running [MaSyMoS](). It is adviced to use the Neo4j Bolt driver. Currently no authentification is supported.
 
 ### `MORRE_URL`
-HTTP Url to the MaSyMoS/Morre query Endpoint.
+HTTP URL to the MaSyMoS/Morre query Endpoint.
 
 ### `WEBCAT_URL`
 URL to a webCAT instance, so created CombineArchives can be viewed directly there.
 
 ### `FEEDBACK_URL`
-...
+URL to a feedback form, e.g. an issue tracker. `{0}`is substituted with the URL the user is coming from.
+
+### `TEMP_PREFIX`
+Prefix to be used, when creating temporary files.
+
+### `THREADPOOL_SIZE`
+Minimum size of the thread pool for the worker, which are responsible for crawling and composing the CombineArchives
+
+### `THREADPOOL_MAX_SIZE`
+Maximum size of the thread pool, to which it can scale in case of heavy load/many requests.
+
+### `THREADPOOL_KEEPALIVE`
+Time in seconds a thread can idle before it is killed.
