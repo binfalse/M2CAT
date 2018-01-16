@@ -11,9 +11,9 @@ public abstract class Util {
 	 * Returns the feedbackUrl if set, otherwise null
 	 * substitutes the first parameter with the url encoded request uri, if request != null.
 	 * Otherwise it will set 'WEB_INTERFACE'
-	 * 
-	 * @param request
-	 * @return
+	 *
+	 * @param request the request
+	 * @return the feedback url
 	 */
 	public static String getFeedbackUrl(HttpServletRequest request) {
 		Config config = Config.getConfig();
@@ -34,10 +34,10 @@ public abstract class Util {
 	}
 	
 	/**
-	 * reconstructs the current request url
-	 * 
-	 * @param request
-	 * @return
+	 * reconstructs the current request url.
+	 *
+	 * @param request the request
+	 * @return the current url
 	 */
 	public static String getCurrentUrl(HttpServletRequest request) {
 		String scheme = request.getScheme();             
@@ -49,12 +49,12 @@ public abstract class Util {
 	}
 	
 	/**
-	 * Returns the context init parameter key or defaultValue
-	 * 
-	 * @param context
-	 * @param key
-	 * @param defaultValue
-	 * @return
+	 * Returns the context init parameter key or defaultValue.
+	 *
+	 * @param context the context
+	 * @param key the key
+	 * @param defaultValue the default value
+	 * @return the param
 	 */
 	public static String getParam(ServletContext context, String key, String defaultValue) {
 		
@@ -69,12 +69,12 @@ public abstract class Util {
 	}
 	
 	/**
-	 * Returns the context init parameter key or defaultValue
-	 * 
-	 * @param context
-	 * @param key
-	 * @param defaultValue
-	 * @return
+	 * Returns the context init parameter key or defaultValue.
+	 *
+	 * @param context the context
+	 * @param key the key
+	 * @param defaultValue the default value
+	 * @return the param
 	 */
 	public static long getParam(ServletContext context, String key, long defaultValue) {
 		
@@ -89,12 +89,12 @@ public abstract class Util {
 	}
 	
 	/**
-	 * Returns the context init parameter key or defaultValue
-	 * 
-	 * @param context
-	 * @param key
-	 * @param defaultValue
-	 * @return
+	 * Returns the context init parameter key or defaultValue.
+	 *
+	 * @param context the context
+	 * @param key the key
+	 * @param defaultValue the default value
+	 * @return the param
 	 */
 	public static double getParam(ServletContext context, String key, double defaultValue) {
 		

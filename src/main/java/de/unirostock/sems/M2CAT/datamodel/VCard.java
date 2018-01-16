@@ -28,9 +28,9 @@ public class VCard extends de.unirostock.sems.cbarchive.meta.omex.VCard implemen
 	}
 	
 	/**
-	 * Checks if given and family name is set
-	 * 
-	 * @return
+	 * Checks if given and family name is set.
+	 *
+	 * @return true, if is sufficient
 	 */
 	@JsonIgnore
 	public boolean isSufficient() {
