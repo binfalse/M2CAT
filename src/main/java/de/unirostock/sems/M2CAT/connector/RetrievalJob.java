@@ -44,9 +44,9 @@ public class RetrievalJob extends PriorityJob {
 	}
 	
 	/**
-	 * Adds a Job, executed after this job
-	 * 
-	 * @param job
+	 * Adds a Job, executed after this job.
+	 *
+	 * @param job the job
 	 */
 	public void addExecuteAfter(RetrievalJob job) {
 		if( executeAfter == null )
@@ -59,9 +59,11 @@ public class RetrievalJob extends PriorityJob {
 	public List<RetrievalJob> getExecutedAfter() {
 		return executeAfter;
 	}
+	
 	/**
 	 * Returns true, if the job has finished.
-	 * @return
+	 *
+	 * @return true, if checks if is finished
 	 */
 	public boolean isFinished() {
 		if( state == JobState.JOB_FINISHED || state == JobState.JOB_ERROR )
@@ -72,8 +74,8 @@ public class RetrievalJob extends PriorityJob {
 	
 	/**
 	 * Returns true, if the job had thrown an exception.
-	 * 
-	 * @return
+	 *
+	 * @return true, if has error
 	 */
 	public boolean hasError() {
 		if( state == JobState.JOB_ERROR )
@@ -84,7 +86,8 @@ public class RetrievalJob extends PriorityJob {
 	
 	/**
 	 * Returns the exception caused by this job or null.
-	 * @return
+	 *
+	 * @return the exception
 	 */
 	public Exception getException() {
 		if( state == JobState.JOB_ERROR )
@@ -117,7 +120,8 @@ public class RetrievalJob extends PriorityJob {
 	
 	/**
 	 * Execution routine. Does the retrieval job.
-	 * @throws Exception
+	 *
+	 * @throws Exception the exception
 	 */
 	protected void retrieve() throws Exception {
 		// do the stuff

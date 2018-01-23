@@ -297,8 +297,9 @@ public class Pmr2Connector implements RetrievalConnector {
 		private static final long serialVersionUID = 1512465714255928601L;
 
 		/**
-		 * Generates a VCard from a JGit PersonIdent
-		 * @param person
+		 * Generates a VCard from a JGit PersonIdent.
+		 *
+		 * @param person the person
 		 */
 		public ImportVCard( PersonIdent person ) {
 			super(	GitNameTransformer.getFamilyName( person.getName() ),
@@ -312,8 +313,8 @@ public class Pmr2Connector implements RetrievalConnector {
 		 * 
 		 * Given-Name Family-Name &lt;mail@example.org&gt; <br>
 		 * Given-Name Family-Name
-		 * 
-		 * @param MailUserString
+		 *
+		 * @param MailUserString the Mail user string
 		 */
 		public ImportVCard( String MailUserString ) {
 			super(	DefaultNameTransformer.getFamilyName( MailUserString ),

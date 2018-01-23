@@ -86,11 +86,10 @@ public class ResultRestApi {
 	}
 	
 	/**
-	 * Generates an error response
-	 * 
-	 * @param status
-	 * @param user
-	 * @param errors
+	 * Generates an error response.
+	 *
+	 * @param status the status
+	 * @param errors the errors
 	 * @return Response
 	 */
 	protected Response buildErrorResponse( int status, String... errors ) {

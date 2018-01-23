@@ -34,9 +34,9 @@ public class CachedArchiveInfo implements Serializable {
 	
 	/**
 	 * Adds a job and all "executed after" jobs to this
-	 * retrival cache
-	 * 
-	 * @param job
+	 * retrival cache.
+	 *
+	 * @param job the job
 	 */
 	@JsonIgnore
 	public void addRetrievalJob(RetrievalJob job) {
@@ -62,9 +62,9 @@ public class CachedArchiveInfo implements Serializable {
 	}
 	
 	/**
-	 * Returns true, if all jobs are finished
-	 * 
-	 * @return
+	 * Returns true, if all jobs are finished.
+	 *
+	 * @return true, if checks if is finished
 	 */
 	public boolean isFinished() {
 		boolean finished = true;

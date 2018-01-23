@@ -38,9 +38,9 @@ public class ArchiveCache {
 	
 	/**
 	 * Registers an archive in the cache. Every archive id can only be registered once!
-	 * 
-	 * @param archiveInformation
-	 * @return
+	 *
+	 * @param archiveInformation the archive information
+	 * @return the cached archive info
 	 */
 	public synchronized CachedArchiveInfo register(ArchiveInformation archiveInformation) {
 		
@@ -59,19 +59,19 @@ public class ArchiveCache {
 	
 	/**
 	 * Checks if an archive is available in the cache aka. known/processing
-	 * 
-	 * @param id
-	 * @return
+	 *
+	 * @param id the id
+	 * @return true, if checks if is available
 	 */
 	public boolean isAvailable(String id) {
 		return cache.containsKey(id);
 	}
 	
 	/**
-	 * Checks if an archive retrieval job is finished
-	 * 
-	 * @param id
-	 * @return
+	 * Checks if an archive retrieval job is finished.
+	 *
+	 * @param id the id
+	 * @return true, if checks if is finished
 	 */
 	public boolean isFinished(String id) {
 		if( cache.containsKey(id) && cache.get(id).isFinished() )
@@ -81,10 +81,10 @@ public class ArchiveCache {
 	}
 	
 	/**
-	 * Returns archiveInformation for the given id, or null
-	 * 
-	 * @param id
-	 * @return
+	 * Returns archiveInformation for the given id, or null.
+	 *
+	 * @param id the id
+	 * @return the cached archive info
 	 */
 	public CachedArchiveInfo get(String id) {
 		return cache.get(id);

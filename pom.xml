@@ -2,14 +2,29 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.unirostock.sems</groupId>
+    <groupId>de.uni-rostock.sbi</groupId>
     <artifactId>M2CAT</artifactId>
     <packaging>war</packaging>
-    <version>0.1.0</version>
+    <version>0.1.2</version>
 
     <name>M2CAT</name>
     <description>A web frontend for searching biological models and crawling additional information for them</description>
-    <url>http://sems.uni-rostock.de</url>
+		<url>https://sems.uni-rostock.de/projects/m2cat/</url>
+		<organization>
+			<name>SEMS project @ University of Rostock</name>
+			<url>http://sems.uni-rostock.de</url>
+		</organization>
+		<licenses>
+			<license>
+				<name>GNU General Public License (GPL)</name>
+				<url>http://www.gnu.org/licenses/gpl.txt</url>
+			</license>
+		</licenses>
+		<scm>
+			<url>https://github.com/binfalse/M2CAT</url>
+			<connection>https://github.com/binfalse/M2CAT.git</connection>
+			<developerConnection>scm:git:ssh://github.com:binfalse/M2CAT.git</developerConnection>
+		</scm>
 
     <properties>
         <neo4j.version>3.0.0</neo4j.version>
@@ -48,7 +63,7 @@
         <dependency>
             <groupId>de.binfalse</groupId>
             <artifactId>BFLog</artifactId>
-            <version>1.3.3</version>
+            <version>1.3.5</version>
         </dependency>
 
         <!-- Servlet -->
@@ -66,14 +81,14 @@
 
         <!-- CombineArchive Library -->
         <dependency>
-            <groupId>de.unirostock.sems</groupId>
+            <groupId>de.uni-rostock.sbi</groupId>
             <artifactId>CombineArchive</artifactId>
-            <version>0.9.4.4</version>
+            <version>1.3.6</version>
         </dependency>
         <dependency>
-            <groupId>de.unirostock.sems</groupId>
+            <groupId>de.uni-rostock.sbi</groupId>
             <artifactId>CombineExt</artifactId>
-            <version>1.2.4</version>
+            <version>1.3.0</version>
         </dependency>
         <!-- Morre Client -->
         <!-- Jersey for RESTful Api -->
@@ -187,9 +202,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>de.unirostock.sems</groupId>
+            <groupId>de.uni-rostock.sbi</groupId>
             <artifactId>morre.client</artifactId>
-            <version>0.0.8-SNAPSHOT</version>
+            <version>0.0.9</version>
         </dependency>
     </dependencies>
 
@@ -240,44 +255,19 @@
             <name>Neo4j Releases</name>
             <url>http://m2.neo4j.org/content/repositories/releases</url>
         </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <!-- synergian wagon-ssh -->
-        <pluginRepository>
-            <id>synergian-repo</id>
-            <url>https://raw.github.com/synergian/wagon-git/releases</url>
-        </pluginRepository>
-    </pluginRepositories>
-
-    <distributionManagement>
-        <downloadUrl>https://raw.github.com/SemsProject/maven-repository/raw/</downloadUrl>
-        <repository>
-            <uniqueVersion>true</uniqueVersion>
-            <id>sems-maven-repository</id>
-            <name>SEMS Maven Release Repository</name>
-            <url>git:releases://git@github.com:SemsProject/maven-repository.git</url>
-            <layout>default</layout>
-        </repository>
-
-        <snapshotRepository>
-            <uniqueVersion>true</uniqueVersion>
-            <id>sems-maven-repository</id>
-            <name>SEMS Maven Snapshot Repository</name>
-            <url>git:snapshots://git@github.com:SemsProject/maven-repository.git</url>
-            <layout>default</layout>
-        </snapshotRepository>
-    </distributionManagement>
+			</repositories>
+			<distributionManagement>
+				<snapshotRepository>
+					<id>ossrh</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+				</snapshotRepository>
+				<repository>
+					<id>ossrh</id>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+				</repository>
+			</distributionManagement>
 
     <build>
-        <extensions>
-            <!-- enable deployment via git -->
-            <extension>
-                <groupId>ar.com.synergian</groupId>
-                <artifactId>wagon-git</artifactId>
-                <version>0.3.0</version>
-            </extension>
-        </extensions>
         <resources>
             <resource>
                 <targetPath>${project.build.outputDirectory}/resources</targetPath>
@@ -294,57 +284,72 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
     <profiles>
-        <!-- deployment profile -->
-        <profile>
-            <id>release</id>
-            <!-- build plugin configuration for the deploy -->
-            <!-- not necessary to always nclude the sources and javadocs -->
-            <build>
-                <plugins>
-                    <!-- attach sources -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-
-                        <configuration>
-                            <attach>true</attach>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <!-- attach javadoc -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-
-                        <configuration>
-                            <failOnError>false</failOnError>
-                <additionalparam>-Xdoclint:none</additionalparam>
-                        </configuration>
-
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
 
         <profile>
             <id>docker</id>
