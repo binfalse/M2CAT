@@ -9,7 +9,7 @@ A public instance can be found at [m2cat.sems.uni-rostock.de](http://m2cat.sems.
 
 
 ## Licence
-    CombineArchiveWeb - a WebInterface to read/create/write/manipulate/... COMBINE archives
+    M2CAT - a web based tool to export reproducible research results
     Copyright (C) 2014-2017:
      - Mariam Nassar <https://www.sbi.uni-rostock.de/team/single/mariam-nassar/>
      - Martin Peters <https://freakybytes.net/impressum/>
